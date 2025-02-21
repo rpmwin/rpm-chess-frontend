@@ -9,6 +9,9 @@ import { Engine } from "../Engine"; // in-browser Stockfish engine
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
+
+
+
 export const Analysis = () => {
   const navigate = useNavigate();
   const game = useMemo(() => new Chess(), []);
@@ -80,7 +83,7 @@ export const Analysis = () => {
         const { positionEvaluation, pv, depth } = response;
         if (depth && depth < 10) return;
         const evaluation =
-          ((game.turn() === "w" ? 1 : -1) * Number(positionEvaluation)) / 100;
+          ((game.turn() === "w" ? 1 : -1) * Number(positionEvaluation));
         setLocalEval({
           cp: evaluation,
           bestLine: pv || "",
